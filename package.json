@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "electron": "^1.6.2",
+    "electron-builder": "^16.6.0"
+  },
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "electron ./app --enable-logging",
+    "dev": "NODE_ENV='development' npm run start",
+    "dist": "build --win --x64 --ia32"
+  }
+}
