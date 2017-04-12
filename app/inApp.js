@@ -6,5 +6,6 @@ window.onload = function () {
 		window.close();
 	});
 	
+	document.getElementById("hier").innerHTML = remote.process.argv;
 };
 
