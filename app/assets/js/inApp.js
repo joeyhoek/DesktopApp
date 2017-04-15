@@ -9,6 +9,8 @@ window.onload = function () {
 	
 	// Deleting previous session
 	window.localStorage.setItem("present", -1);
+	window.localStorage.setItem("toLate", -1);
+	window.localStorage.setItem("absent", -1);
 		
 	// Getting QRCode and other code through custom http prototol (absence:\\)
 	function getParams(parameters) {
@@ -42,6 +44,7 @@ window.onload = function () {
 	qrCode.onload = function () {
 		document.getElementsByTagName("img")[0].src = parameters.qrCode;
 		
+		// Get presence/late/absence every 1/1000st of a second
 		setInterval(function(){
 			var userId = parameters.userId;
 			var token = parameters.token;
@@ -82,15 +85,51 @@ window.onload = function () {
 				if (stored !== -1) {
 					if (present !== -1 && stored !== present) {
 						window.localStorage.setItem("present", present);
-						alert("Present: " + present);
+						document.getElementById("presentCount").innerHTML = present;
 					}
 				} else {
 					if (present !== -1) {
 						window.localStorage.setItem("present", present);
-						alert("Present: " + present);
+						document.getElementById("presentCount").innerHTML = present;
 					} else {
 						window.localStorage.setItem("present", 0);
-						alert("Present: 0");
+						document.getElementById("presentCount").innerHTML = 0;
+					}
+				}
+				
+				stored = parseInt(window.localStorage.getItem("toLate"));
+				var toLate = parseInt(response.toLate);
+				
+				if (stored !== -1) {
+					if (toLate !== -1 && stored !== toLate) {
+						window.localStorage.setItem("toLate", toLate);
+						document.getElementById("lateCount").innerHTML = toLate;
+					}
+				} else {
+					if (toLate !== -1) {
+						window.localStorage.setItem("toLate", toLate);
+						document.getElementById("lateCount").innerHTML = toLate;
+					} else {
+						window.localStorage.setItem("toLate", 0);
+						document.getElementById("lateCount").innerHTML = 0;
+					}
+				}
+				
+				stored = parseInt(window.localStorage.getItem("absent"));
+				var absent = parseInt(response.absent);
+				
+				if (stored !== -1) {
+					if (absent !== -1 && stored !== absent) {
+						window.localStorage.setItem("absent", absent);
+						document.getElementById("absentCount").innerHTML = absent;
+					}
+				} else {
+					if (absent !== -1) {
+						window.localStorage.setItem("absent", absent);
+						document.getElementById("absentCount").innerHTML = absent;
+					} else {
+						window.localStorage.setItem("absent", 0);
+						document.getElementById("absentCount").innerHTML = 0;
 					}
 				}
 			};

@@ -1,9 +1,9 @@
 {
   "name": "Absence",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "main.js",
-  "description": "Kleine applicatie voor docenten om QR-Code te kunnen laten zien tijdens een college.",
-  "author": "Joey Hoek",
+  "description": "Small application for showing QR-codes during classes.",
+  "author": "Team 10 | Joey Hoek",
   "devDependencies": {
     "electron-single-instance": "0.0.2"
   }
