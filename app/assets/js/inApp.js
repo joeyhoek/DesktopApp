@@ -1,10 +1,17 @@
 const remote = require('electron').remote;
+const shell = require('electron').shell;
+const domain = "http://absence.innovatewebdesign.nl/";
 
 window.onload = function () {
 	// Close button
 	document.getElementById("close").addEventListener("click", function (e) {
 		var window = remote.getCurrentWindow();
 		window.close();
+	});
+	
+	// Open EULA in browser
+	document.getElementsByTagName("a")[0].addEventListener("click", function (e) {
+		shell.openExternal(domain + "EULA");
 	});
 	
 	// Deleting previous session
@@ -43,13 +50,14 @@ window.onload = function () {
 	qrCode.src = parameters.qrCode;
 	qrCode.onload = function () {
 		document.getElementsByTagName("img")[0].src = parameters.qrCode;
+		document.getElementsByTagName("img")[0].classList.remove("hide");
 		
 		// Get presence/late/absence every 1/1000st of a second
 		setInterval(function(){
 			var userId = parameters.userId;
 			var token = parameters.token;
 			var classId = parameters.classId;
-			var url = "http://www.team16j.p004.nl/api/desktopClient.php";
+			var url = domain + "api/desktopClient.php";
 			var http = new XMLHttpRequest();
 			var params = "userId=" + userId + "&token=" + token + "&classId=" + classId;
 
@@ -68,14 +76,16 @@ window.onload = function () {
 						response = {
 							'present': -1,
 							'toLate': -1,
-							'absent': -1
+							'absent': -1,
+							'finished': "notDone"
 						};
 					}
 				} else {
 					response = {
 						'present': -1,
 						'toLate': -1,
-						'absent': -1
+						'absent': -1,
+						'finished': "notDone"
 					};
 				}
 				
@@ -132,9 +142,15 @@ window.onload = function () {
 						document.getElementById("absentCount").innerHTML = 0;
 					}
 				}
+				
+				if (response.finished !== "notDone") {
+					document.getElementById("content").classList.add("hover");
+				} else {
+					document.getElementById("content").classList.remove("hover");
+				}
 			};
 			http.send(params);
-		}, 1);
+		}, 500);
 	};
 };
 

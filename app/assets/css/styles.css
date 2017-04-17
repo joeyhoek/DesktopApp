@@ -42,10 +42,14 @@ img.qrCode {
 	z-index: 0;
 }
 
+#qrCode {
+	z-index: 1;
+}
+
 #hover {
 	height: 294px;
 	width: 300px;
-	z-index: 1;
+	z-index: 2;
 	top: 7px;
 	left: -15px;
 	margin: 0;
@@ -62,7 +66,7 @@ img.qrCode {
 	transition-delay: 0.4s;
 }
 
-#content:hover #hover {
+#content:hover #hover, #content.hover #hover {
 	opacity: 1;
 	transition-delay: 0s;
 }
@@ -76,12 +80,19 @@ button {
 	background-color: #015679;
 	color: #ffffff;
 	outline: 0;
-	transition: background-color 0.3s, color 0.3s;
 	font-size: 13.75px;
 	font-weight: 400;
-	margin-right: -114px;
+	margin-right: -180px;
 	margin-top: 52px;
 	border: 0;
+	transition: margin-right 0.4s 0.05s, opacity 0.3s 0.05s, background-color 0.3s 0s, color 0.3s 0s;
+	opacity: 0;
+}
+
+#content:hover button, #content.hover button {
+	margin-right: -114px;
+	transition: margin-right 0.4s 0.4s, background-color 0.3s 0s, color 0.3s 0s;
+	opacity: 1;
 }
 
 button:hover {
@@ -102,9 +113,19 @@ h1 {
 	font-weight: 700;
 	float: right;
 	margin-top: 33px;
-	margin-right: 30px;
+	margin-right: -36px;
 	width: 180px;
 	text-align: right;
+	transition: margin-right 0.4s, opacity 0.3s;
+	transition-delay: 0.15s;
+	opacity: 0;
+}
+
+#content:hover h1, #content.hover h1 {
+	margin-right: 30px;
+	transition: margin-right 0.4s;
+	transition-delay: 0.2s;
+	opacity: 1;
 }
 
 h2 {
@@ -116,8 +137,18 @@ h2 {
 	font-weight: 300;
 	float: right;
 	width: 145px;
-	margin-right: 28px;
+	margin-right: -38px;
 	margin-top: -10px;
+	transition: margin-right 0.4s, opacity 0.3s;
+	transition-delay: 0.1s;
+	opacity: 0;
+}
+
+#content:hover h2, #content.hover h2 {
+	margin-right: 28px;
+	transition: margin-right 0.4s;
+	transition-delay: 0.3s;
+	opacity: 1;
 }
 
 h2 a {
@@ -143,10 +174,20 @@ h3 {
 	line-height: 1.286;
 	font-weight: 400;
 	float: right;
-	margin-right: 20px;
-	margin-top: 110px;
+	margin-left: 95px;
+	margin-top: 248px;
+	position: absolute;
 	width: 180px;
-	text-align: right;
+	transition: margin-left 0.4s, opacity 0.3s;
+	transition-delay: 0.1s;
+	opacity: 0;
+}
+
+#content:hover h3, #content.hover h3 {
+	margin-left: 29px;
+	transition: margin-left 0.4s;
+	transition-delay: 0.3s;
+	opacity: 1;
 }
 
 p {
@@ -166,7 +207,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #leftContainer {
+#content:hover #leftContainer, #content.hover #leftContainer {
 	left: 25px;
 	transition-delay: 0.5s;
 	transition: 0.5s left;
@@ -186,7 +227,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #rightContainer {
+#content:hover #rightContainer, #content.hover #rightContainer {
 	right: 0;
 	transition-delay: 0.5s;
 	transition: 0.5s right;
@@ -213,7 +254,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #logo {
+#content:hover #logo, #content.hover #logo {
 	margin-left: 12px;
 	transition: margin-left 0.3s;
 	transition-delay: 0.3s;
@@ -224,7 +265,7 @@ p {
 	position: absolute;
 }
 
-#presentEmblem , #lateEmblem, #absentEmblem {
+#presentEmblem, #lateEmblem, #absentEmblem {
 	margin-top: 188px;
 }
 
@@ -235,7 +276,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #presentEmblem {
+#content:hover #presentEmblem, #content.hover #presentEmblem {
 	margin-left: 30px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.2s;
@@ -249,7 +290,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #lateEmblem {
+#content:hover #lateEmblem, #content.hover #lateEmblem {
 	margin-left: 88px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.3s;
@@ -263,7 +304,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #absentEmblem {
+#content:hover #absentEmblem, #content.hover #absentEmblem {
 	margin-left: 146px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.4s;
@@ -288,7 +329,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #presentCount {
+#content:hover #presentCount, #content.hover #presentCount {
 	margin-left: 30px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.2s;
@@ -302,7 +343,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #lateCount {
+#content:hover #lateCount, #content.hover #lateCount {
 	margin-left: 88px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.3s;
@@ -316,7 +357,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #absentCount {
+#content:hover #absentCount, #content.hover #absentCount {
 	margin-left: 146px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.4s;
@@ -339,7 +380,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #presentText {
+#content:hover #presentText, #content.hover #presentText {
 	margin-left: 30px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.2s;
@@ -353,7 +394,7 @@ p {
 	opacity: 0;
 }
 
-#content:hover #lateText {
+#content:hover #lateText, #content.hover #lateText {
 	margin-left: 88px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.3s;
@@ -367,9 +408,22 @@ p {
 	opacity: 0;
 }
 
-#content:hover #absentText {
+#content:hover #absentText, #content.hover #absentText {
 	margin-left: 146px;
 	transition: margin-left 0.4s;
 	transition-delay: 0.4s;
 	opacity: 1;
+}
+
+#qrCode {
+	opacity: 1;
+	transition: 0.3s opacity;
+}
+
+#qrCode.hide {
+	opacity: 0;
+}
+
+.hide {
+	opacity: 0;
 }
